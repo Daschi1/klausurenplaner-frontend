@@ -3,4 +3,23 @@
   width: 333px;
 
   margin: 10px 0 10px 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.information {
+  text-align: center;
+}
+
+.separator {
+  color: #99aab5;
+  width: 300px;
+
+  margin-top: 0;
+
+  border-top: 1px solid;
+  border-radius: 1px;
 }

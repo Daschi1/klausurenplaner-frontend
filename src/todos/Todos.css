@@ -1,0 +1,26 @@
+.todos {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.todo {
+  width: 300px;
+
+  margin-bottom: 11px;
+  padding: 11px 0;
+
+  border: 1px solid #99aab5;
+  border-radius: 1px;
+}
+
+.todo input {
+  accent-color: #7289da;
+
+  pointer-events: none;
+}
+
+.completedTodo {
+  border-color: #7289da;
+}
