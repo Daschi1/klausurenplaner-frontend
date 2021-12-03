@@ -7,6 +7,7 @@ class Klausur extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
+      id: props.id,
       titel: props.titel,
       millis: props.millis,
       wetter: props.wetter
@@ -21,8 +22,8 @@ class Klausur extends React.Component {
           <h4>{new Date(this.state.millis).toLocaleString("de-DE")}</h4>
           <h4>{this.state.wetter}</h4>
         </div>
-        <hr className={"separator"}/>
-        <Todos/>
+        <progress className={"todoProgress"} id={"todoProgress-" + this.state.id} max={100}/>
+        <Todos klausurId={this.state.id}/>
       </div>
     );
   }

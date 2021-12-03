@@ -8,7 +8,8 @@ class Klausuren extends React.Component {
     const titel = "Hello World";
     const millis = Date.now();
     const wetter = "N/V";
-    return Array.from(Array(5).keys()).map(value => <Klausur key={value} titel={titel} millis={millis} wetter={wetter}/>);
+    return Array.from(Array(5).keys()).map(value => <Klausur id={value} key={value} titel={titel} millis={millis}
+                                                             wetter={wetter}/>);
   }
 
   render() {
