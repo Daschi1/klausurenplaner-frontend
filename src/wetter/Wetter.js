@@ -1,4 +1,4 @@
-import { faCloud, faCloudRain, faCloudShowersHeavy, faPooStorm, faSmog, faSnowflake, faSun } from "@fortawesome/free-solid-svg-icons";
+import { faAtom, faCloud, faCloudRain, faCloudShowersHeavy, faPooStorm, faSmog, faSnowflake, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import "./Wetter.css";
@@ -37,6 +37,7 @@ class Wetter extends React.Component {
                 icon=faCloud;
                 break;
             default:
+                icon=faAtom;
                 break;
         }
         return (
