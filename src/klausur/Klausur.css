@@ -1,0 +1,22 @@
+.klausur {
+  background-color: #2c2f33;
+  width: 333px;
+
+  margin: 10px 0 10px 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.information {
+  text-align: center;
+}
+
+.todoProgress {
+  accent-color: #7289da;
+  width: 300px;
+
+  margin-bottom: 11px;
+}
