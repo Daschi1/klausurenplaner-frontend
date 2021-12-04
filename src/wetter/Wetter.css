@@ -1,0 +1,14 @@
+.wetter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainWetter {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+
