@@ -60,7 +60,7 @@ class Wetter extends React.Component {
       <div className={"wetter"}>
         {this.icon()}
         <h4 className={"mainWetter"}>{this.state.main}</h4>
-        <h4 className={"degreesWetter"}>{this.state.degrees + "°"}</h4>
+        <h4 className={"degreesWetter"}>{this.state.degrees + "°C"}</h4>
       </div>
     );
   }
