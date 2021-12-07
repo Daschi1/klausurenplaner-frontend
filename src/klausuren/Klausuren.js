@@ -1,6 +1,7 @@
 import React from "react";
 import "./Klausuren.css"
 import Klausur from "../klausur/Klausur";
+import AddKlausur from "../klausur/AddKlausur";
 
 class Klausuren extends React.Component {
 
@@ -62,6 +63,7 @@ class Klausuren extends React.Component {
     return (
       <div className={"klausuren"}>
         {this.generateKlausur()}
+        <AddKlausur/>
       </div>
     );
   }

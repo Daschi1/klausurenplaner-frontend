@@ -1,5 +1,8 @@
 import {Component} from "react";
 import "./Todos.css"
+import AddTodo from "./AddTodo";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class Todos extends Component {
 
@@ -22,6 +25,20 @@ class Todos extends Component {
   setData(todo) {
     this.setState(state => {
       const updated = state.todos.map(value => value.id === todo.id ? todo : value);
+      return {todos: updated};
+    });
+  }
+
+  addData = (todo) => { // function declared is like this, so we can pass it to a child (otherwise this won't be declared properly)
+    this.setState(state => {
+      const updated = state.todos.concat(todo);
+      return {todos: updated};
+    });
+  }
+
+  removeData(id) {
+    this.setState(state => {
+      const updated = state.todos.filter(value => value.id !== id);
       return {todos: updated};
     });
   }
@@ -51,14 +68,20 @@ class Todos extends Component {
     });
   }
 
+  clickedDelete(id) {
+    this.removeData(id);
+  }
+
   createTodos() {
     return Array.from(this.state.todos).map(todo => {
       const id = todo.id;
       return (
         <div key={id} className={"todo " + (todo.completed ? "completedTodo" : "")}
              onClick={() => this.todoClicked(todo)}>
-          <input type={"checkbox"} id={id} defaultChecked={todo.completed}/>
-          <label htmlFor={id}>{todo.task}</label>
+          <input type={"checkbox"} className={"todoCheckbox"} id={id} defaultChecked={todo.completed}/>
+          <label htmlFor={id} className={"todoCheckboxLabel"}>{todo.task}</label>
+          <FontAwesomeIcon className={"deleteTodo"} icon={faTimes}
+                           onClick={() => this.clickedDelete(id)}/>
         </div>
       );
     });
@@ -82,6 +105,7 @@ class Todos extends Component {
     return (
       <div className={"todos"}>
         {this.createTodos()}
+        <AddTodo klausurId={this.state.klausurId} addItem={this.addData}/>
       </div>
     );
   }
