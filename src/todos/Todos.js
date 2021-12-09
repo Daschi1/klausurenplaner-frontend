@@ -23,10 +23,17 @@ class Todos extends Component {
   }
 
   setData(todo) {
-    this.setState(state => {
-      const updated = state.todos.map(value => value.id === todo.id ? todo : value);
-      return {todos: updated};
-    });
+    const id = todo.id;
+    const params = todo.completed ? "?completed" : "";
+    fetch(`http://localhost:3001/update/todo/${id}${params}`, {
+      method: "PUT"
+    }).then(response => {
+      if (response.ok)
+        this.setState(state => {
+          const updated = state.todos.map(value => value.id === id ? todo : value);
+          return {todos: updated};
+        });
+    }).catch(reason => console.log(reason));
   }
 
   addData = (todo) => { // function declared is like this, so we can pass it to a child (otherwise this won't be declared properly)
@@ -44,28 +51,13 @@ class Todos extends Component {
   }
 
   getData() {
-    this.setState({
-      todos: [
-        {
-          "id": this.state.klausurId + 34562624,
-          "task": "Zusammenfassung machen",
-          "important": true,
-          "completed": false
-        },
-        {
-          "id": this.state.klausurId + 24456465,
-          "task": "Zusammenfassung machen",
-          "important": true,
-          "completed": false
-        },
-        {
-          "id": this.state.klausurId + 234523421,
-          "task": "Zusammenfassung machen",
-          "important": true,
-          "completed": true
-        }
-      ]
-    });
+    const klausurId = this.state.klausurId;
+    fetch(`http://localhost:3001/get/todos/${klausurId}`).then(response => {
+      if (response.ok)
+        response.json().then(value => {
+          this.setState({todos: value.todos});
+        });
+    }).catch(reason => console.log(reason));
   }
 
   clickedDelete(id) {

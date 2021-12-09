@@ -13,39 +13,10 @@ class Klausuren extends React.Component {
   }
 
   getData() {
-    this.setState({
-      klausuren: [
-        {
-          "id": 121123,
-          "name": "BWL",
-          "date": 1638621726021,
-          "plz": 69469,
-          "weather": {
-            "main": "Rain",
-            "degrees": 19.2
-          }
-        }, {
-          "id": 34234,
-          "name": "BWL",
-          "date": 1638621726021,
-          "plz": 69469,
-          "weather": {
-            "main": "Thunderstorm",
-            "degrees": 19.2
-          }
-        },
-        {
-          "id": 14536456,
-          "name": "BWL",
-          "date": 1638621726021,
-          "plz": 69469,
-          "weather": {
-            "main": "Drizzle",
-            "degrees": 19.2
-          }
-        }
-      ]
-    })
+    fetch("http://localhost:3001/get/klausurs").then(response => {
+      if (response.ok)
+        response.json().then(value => this.setState({klausuren: value.klausurs}));
+    }).catch(reason => console.log(reason));
   }
 
   componentDidMount() {
@@ -53,10 +24,10 @@ class Klausuren extends React.Component {
   }
 
   generateKlausur() {
-    return Array.from(this.state.klausuren).map(value => <Klausur id={value.id} key={value.id} titel={value.name}
-                                                                  millis={value.date}
-                                                                  main={value.weather.main}
-                                                                  degrees={value.weather.degrees}/>);
+    return Array.from(this.state.klausuren).map(value =>
+      <Klausur id={value.klausurId} key={value.klausurId}
+               titel={value.name}
+               millis={value.date}/>);
   }
 
   render() {

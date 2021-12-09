@@ -1,0 +1,37 @@
+.addKlausur {
+  justify-content: center;
+}
+
+.addKlausur:hover .addKlausurIcon {
+  color: #7289da;
+}
+
+.klausurOptionButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  margin-top: auto;
+  margin-bottom: 23px;
+  width: 333px;
+}
+
+.cancelKlausurIcon:hover {
+  color: #D52941;
+}
+
+.confirmKlausurIcon:hover {
+  color: #28965A;
+}
+
+.klausurInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: auto;
+}
+
+.invisible {
+  display: none;
+}

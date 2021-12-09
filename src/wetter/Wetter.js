@@ -17,9 +17,26 @@ class Wetter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      main: props.main,
-      degrees: props.degrees
+      id: props.id,
+      main: "N/V",
+      degrees: "-"
     };
+  }
+
+  loadData() {
+    const id = this.state.id;
+    fetch(`http://localhost:3001/get/klausur/${id}`).then(response => {
+      if (response.ok)
+        response.json().then(value => {
+          const weather = value.weather;
+          if (Object.keys(weather).length !== 0)
+            this.setState({main: weather.main, degrees: weather.degrees});
+        });
+    }).catch(reason => console.log(reason));
+  }
+
+  componentDidMount() {
+    this.loadData();
   }
 
   icon() {

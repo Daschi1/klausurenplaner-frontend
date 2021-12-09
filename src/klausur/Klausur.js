@@ -10,9 +10,7 @@ class Klausur extends React.Component {
     this.state = {
       id: props.id,
       titel: props.titel,
-      millis: props.millis,
-      main: props.main,
-      degrees: props.degrees
+      millis: props.millis
     };
   }
 
@@ -22,7 +20,7 @@ class Klausur extends React.Component {
         <div className={"information"}>
           <h1>{this.state.titel}</h1>
           <h4>{new Date(this.state.millis).toLocaleString("de-DE")}</h4>
-          <Wetter main={this.state.main} degrees={this.state.degrees}/>
+          <Wetter id={this.state.id}/>
         </div>
         <progress className={"todoProgress"} id={"todoProgress-" + this.state.id} max={100}/>
         <Todos klausurId={this.state.id}/>

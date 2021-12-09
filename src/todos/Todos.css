@@ -38,9 +38,14 @@
   color: #99aab5;
 }
 
+.todo:hover .deleteTodo {
+  visibility: visible;
+}
+
 .deleteTodo {
   margin-right: 11px;
   margin-left: auto;
+  visibility: hidden;
 }
 
 .deleteTodo:hover {
