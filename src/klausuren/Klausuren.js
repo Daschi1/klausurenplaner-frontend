@@ -19,6 +19,16 @@ class Klausuren extends React.Component {
     }).catch(reason => console.log(reason));
   }
 
+  removeData = (id) => {
+    fetch(`http://localhost:3001/delete/klausur/${id}`, {method: "DELETE"}).then(response => {
+      if (response.ok)
+        this.setState(state => {
+          const updated = state.klausuren.filter(value => value.klausurId !== id);
+          return {klausuren: updated};
+        });
+    }).catch(reason => console.log(reason));
+  }
+
   componentDidMount() {
     this.getData();
   }
@@ -27,7 +37,8 @@ class Klausuren extends React.Component {
     return Array.from(this.state.klausuren).map(value =>
       <Klausur id={value.klausurId} key={value.klausurId}
                titel={value.name}
-               millis={value.date}/>);
+               millis={value.date}
+               removeKlausur={this.removeData}/>);
   }
 
   render() {
