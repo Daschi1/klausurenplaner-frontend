@@ -17,6 +17,9 @@ class AddKlausur extends Component {
   }
 
   clickedConfirm() {
+   /* const name = document.getElementById("klausurInputName").value;
+    const date = document.getElementById("klausurInputDate").value;
+    const plz = document.getElementById("klausurInputPlz").value;*/
     this.disableAdding();
   }
 
@@ -25,15 +28,24 @@ class AddKlausur extends Component {
   }
 
   disableAdding() {
-    if (this.state.adding)
+    if (this.state.adding) {
       this.setState({adding: false});
+      document.getElementById("klausurInputName").value = "";
+      document.getElementById("klausurInputDate").value = "";
+      document.getElementById("klausurInputPlz").value = "";
+    }
   }
 
   render() {
     return (
       <div className={"klausur addKlausur"} onClick={() => this.clickedAdd()}>
         <div className={"klausurInput " + (this.state.adding ? "" : "invisible")}>
-          <input type={"text"}/>
+          <h4>Name</h4>
+          <input type={"text"} id={"klausurInputName"}/>
+          <h4>Datum, Uhrzeit</h4>
+          <input type={"datetime-local"} id={"klausurInputDate"}/>
+          <h4>PLZ</h4>
+          <input type={"text"} id={"klausurInputPlz"}/>
         </div>
         <FontAwesomeIcon className={"addKlausurIcon " + (this.state.adding ? "invisible" : "")} icon={faPlus}/>
         <div className={"klausurOptionButtons " + (this.state.adding ? "" : "invisible")}>

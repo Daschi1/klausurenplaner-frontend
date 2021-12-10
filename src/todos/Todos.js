@@ -37,17 +37,27 @@ class Todos extends Component {
   }
 
   addData = (todo) => { // function declared is like this, so we can pass it to a child (otherwise this won't be declared properly)
-    this.setState(state => {
-      const updated = state.todos.concat(todo);
-      return {todos: updated};
-    });
+    fetch("http://localhost:3001/add/todo", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(todo)
+    }).then(response => {
+      if (response.ok)
+        response.json().then(value => this.setState(state => {
+          const updated = state.todos.concat(value);
+          return {todos: updated};
+        }));
+    }).catch(reason => console.log(reason));
   }
 
   removeData(id) {
-    this.setState(state => {
-      const updated = state.todos.filter(value => value.id !== id);
-      return {todos: updated};
-    });
+    fetch(`http://localhost:3001/delete/todo/${id}`, {method: "DELETE"}).then(response => {
+      if (response.ok)
+        this.setState(state => {
+          const updated = state.todos.filter(value => value.id !== id);
+          return {todos: updated};
+        });
+    }).catch(reason => console.log(reason));
   }
 
   getData() {

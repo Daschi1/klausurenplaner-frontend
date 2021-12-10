@@ -15,9 +15,10 @@
   text-align: center;
 }
 
-.klausurDate {
-  /*margin-top: 99px;*/
+.klausurName {
+  height: 77px;
 }
+
 
 .todoProgress {
   accent-color: #7289da;

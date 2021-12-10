@@ -26,7 +26,7 @@ class Klausur extends React.Component {
         <div className={"information"}>
           <FontAwesomeIcon className={"deleteKlausur"} icon={faTimes}
                            onClick={() => this.clickedDelete(this.state.id)}/>
-          <h1>{this.state.titel}</h1>
+          <h1 className={"klausurName"}>{this.state.titel}</h1>
           <h4 className={"klausurDate"}>{new Date(this.state.millis).toLocaleString("de-DE")}</h4>
           <Wetter id={this.state.id}/>
         </div>

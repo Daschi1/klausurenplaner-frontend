@@ -22,6 +22,7 @@ class AddTodo extends Component {
     const task = document.getElementById("input" + this.state.klausurId).value;
     const todo = {
       "id": this.state.klausurId + Math.random(),
+      "klausurId": this.state.klausurId,
       "task": task,
       "important": false,
       "completed": false
