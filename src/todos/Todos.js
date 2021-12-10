@@ -75,7 +75,7 @@ class Todos extends Component {
   }
 
   createTodos() {
-    return Array.from(this.state.todos).map(todo => {
+    return Array.from(this.state.todos).sort((a, b) => b.completed - a.completed).map(todo => {
       const id = todo.id;
       return (
         <div key={id} className={"todo " + (todo.completed ? "completedTodo" : "")}

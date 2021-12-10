@@ -48,7 +48,7 @@ class Klausuren extends React.Component {
   }
 
   generateKlausur() {
-    return Array.from(this.state.klausuren).map(value =>
+    return Array.from(this.state.klausuren).sort((a, b) => a.date - b.date).map(value =>
       <Klausur id={value.klausurId} key={value.klausurId}
                titel={value.name}
                millis={value.date}
