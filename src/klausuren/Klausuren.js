@@ -19,6 +19,20 @@ class Klausuren extends React.Component {
     }).catch(reason => console.log(reason));
   }
 
+  addData = (klausur) => {
+    fetch("http://localhost:3001/add/klausur", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(klausur)
+    }).then(response => {
+      if (response.ok)
+        response.json().then(value => this.setState(state => {
+          const updated = state.klausuren.concat(value);
+          return {klausuren: updated};
+        }));
+    }).catch(reason => console.log(reason));
+  }
+
   removeData = (id) => {
     fetch(`http://localhost:3001/delete/klausur/${id}`, {method: "DELETE"}).then(response => {
       if (response.ok)
@@ -45,7 +59,7 @@ class Klausuren extends React.Component {
     return (
       <div className={"klausuren"}>
         {this.generateKlausur()}
-        <AddKlausur/>
+        <AddKlausur addData={this.addData}/>
       </div>
     );
   }

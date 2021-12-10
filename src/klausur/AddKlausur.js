@@ -17,9 +17,15 @@ class AddKlausur extends Component {
   }
 
   clickedConfirm() {
-   /* const name = document.getElementById("klausurInputName").value;
-    const date = document.getElementById("klausurInputDate").value;
-    const plz = document.getElementById("klausurInputPlz").value;*/
+    const inputName = document.getElementById("klausurInputName").value;
+    const inputDate = document.getElementById("klausurInputDate").value;
+    const inputPlz = document.getElementById("klausurInputPlz").value;
+    const klausur = {
+      name: inputName,
+      date: new Date(inputDate).getTime(),
+      plz: inputPlz
+    }
+    this.props.addData(klausur);
     this.disableAdding();
   }
 
