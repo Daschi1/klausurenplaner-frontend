@@ -17,8 +17,9 @@
 
 .klausurName {
   height: 77px;
+  margin-left: 11px;
+  margin-right: 11px;
 }
-
 
 .todoProgress {
   accent-color: #7289da;
