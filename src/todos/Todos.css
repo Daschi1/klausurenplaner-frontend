@@ -25,6 +25,11 @@
   pointer-events: none;
 }
 
+.todoCheckboxLabel {
+  overflow: hidden; /*hides overflow*/
+  text-overflow: ellipsis; /*styles overflow*/
+}
+
 .todoCheckbox {
   margin-left: 11px;
   margin-right: 3px;
