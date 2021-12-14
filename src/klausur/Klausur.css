@@ -3,6 +3,7 @@
   width: 333px;
 
   margin: 10px 0 10px 10px;
+  /*padding-top: 11px;*/
 
   display: flex;
   flex-direction: column;
@@ -14,9 +15,28 @@
   text-align: center;
 }
 
+.klausurName {
+  height: 77px;
+  margin-left: 11px;
+  margin-right: 11px;
+}
+
 .todoProgress {
   accent-color: #7289da;
   width: 300px;
 
   margin-bottom: 11px;
+}
+
+.klausur:hover .deleteKlausur {
+  visibility: visible;
+}
+
+.deleteKlausur {
+  visibility: hidden;
+  margin-top: 11px;
+}
+
+.deleteKlausur:hover {
+  color: #D52941;
 }

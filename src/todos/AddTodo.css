@@ -1,0 +1,47 @@
+.addTodo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: auto;
+}
+
+.addTodo:hover {
+  border-color: #7289da;
+}
+
+.addTodo:hover .addTodoIcon {
+  color: #7289da;
+}
+
+.todoOptionButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: auto;
+  margin-right: 11px;
+}
+
+.cancelTodoIcon:hover {
+  color: #D52941;
+}
+
+.confirmTodoIcon {
+  margin-right: 3px;
+}
+
+.confirmTodoIcon:hover {
+  color: #28965A;
+}
+
+.inputTodo {
+  margin-left: 11px;
+  height: 10px;
+  width: 222px;
+}
+
+.invisible {
+  display: none;
+}

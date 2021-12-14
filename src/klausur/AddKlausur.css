@@ -1,0 +1,49 @@
+.addKlausur {
+  justify-content: center;
+}
+
+.addKlausur:hover .addKlausurIcon {
+  color: #7289da;
+}
+
+.klausurOptionButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  margin-top: auto;
+  margin-bottom: 23px;
+  width: 333px;
+}
+
+.cancelKlausurIcon:hover {
+  color: #D52941;
+}
+
+.confirmKlausurIcon:hover {
+  color: #28965A;
+}
+
+.klausurInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: auto;
+  /*margin-top: 55px;*/
+  /*height: 140px;*/
+}
+
+.klausurInput input {
+  width: 300px;
+  height: 17px;
+}
+
+.klausurInput h4 {
+  height: 11px;
+}
+
+.invisible {
+  display: none;
+}

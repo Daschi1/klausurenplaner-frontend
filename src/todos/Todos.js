@@ -1,5 +1,8 @@
 import {Component} from "react";
 import "./Todos.css"
+import AddTodo from "./AddTodo";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class Todos extends Component {
 
@@ -20,45 +23,67 @@ class Todos extends Component {
   }
 
   setData(todo) {
-    this.setState(state => {
-      const updated = state.todos.map(value => value.id === todo.id ? todo : value);
-      return {todos: updated};
-    });
+    const id = todo.id;
+    const params = todo.completed ? "?completed" : "";
+    fetch(`http://localhost:3001/update/todo/${id}${params}`, {
+      method: "PUT"
+    }).then(response => {
+      if (response.ok)
+        this.setState(state => {
+          const updated = state.todos.map(value => value.id === id ? todo : value);
+          return {todos: updated};
+        });
+    }).catch(reason => console.log(reason));
+  }
+
+  addData = (todo) => { // function declared is like this, so we can pass it to a child (otherwise this won't be declared properly)
+    fetch("http://localhost:3001/add/todo", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(todo)
+    }).then(response => {
+      if (response.ok)
+        response.json().then(value => this.setState(state => {
+          const updated = state.todos.concat(value);
+          return {todos: updated};
+        }));
+    }).catch(reason => console.log(reason));
+  }
+
+  removeData(id) {
+    fetch(`http://localhost:3001/delete/todo/${id}`, {method: "DELETE"}).then(response => {
+      if (response.ok)
+        this.setState(state => {
+          const updated = state.todos.filter(value => value.id !== id);
+          return {todos: updated};
+        });
+    }).catch(reason => console.log(reason));
   }
 
   getData() {
-    this.setState({
-      todos: [
-        {
-          "id": this.state.klausurId + 34562624,
-          "task": "Zusammenfassung machen",
-          "important": true,
-          "completed": false
-        },
-        {
-          "id": this.state.klausurId + 24456465,
-          "task": "Zusammenfassung machen",
-          "important": true,
-          "completed": false
-        },
-        {
-          "id": this.state.klausurId + 234523421,
-          "task": "Zusammenfassung machen",
-          "important": true,
-          "completed": true
-        }
-      ]
-    });
+    const klausurId = this.state.klausurId;
+    fetch(`http://localhost:3001/get/todos/${klausurId}`).then(response => {
+      if (response.ok)
+        response.json().then(value => {
+          this.setState({todos: value.todos});
+        });
+    }).catch(reason => console.log(reason));
+  }
+
+  clickedDelete(id) {
+    this.removeData(id);
   }
 
   createTodos() {
-    return Array.from(this.state.todos).map(todo => {
+    return Array.from(this.state.todos).sort((a, b) => b.completed - a.completed).map(todo => {
       const id = todo.id;
       return (
         <div key={id} className={"todo " + (todo.completed ? "completedTodo" : "")}
              onClick={() => this.todoClicked(todo)}>
-          <input type={"checkbox"} id={id} defaultChecked={todo.completed}/>
-          <label htmlFor={id}>{todo.task}</label>
+          <input type={"checkbox"} className={"todoCheckbox"} id={id} defaultChecked={todo.completed}/>
+          <label htmlFor={id} className={"todoCheckboxLabel"}>{todo.task}</label>
+          <FontAwesomeIcon className={"deleteTodo"} icon={faTimes}
+                           onClick={() => this.clickedDelete(id)}/>
         </div>
       );
     });
@@ -82,6 +107,7 @@ class Todos extends Component {
     return (
       <div className={"todos"}>
         {this.createTodos()}
+        <AddTodo klausurId={this.state.klausurId} addItem={this.addData}/>
       </div>
     );
   }
