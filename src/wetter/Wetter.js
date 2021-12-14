@@ -82,5 +82,3 @@ class Wetter extends React.Component {
     );
   }
 }
-
-export default Wetter;
